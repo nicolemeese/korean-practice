@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Korean Dictation</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    #feedback { font-size: 24px; margin: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Korean Dictation Practice</h1>
+  <div id="word">Press START to begin</div>
+  <button id="startBtn">START</button>
+  <button id="audioBtn">🔊 Play Audio</button>
+  <input type="text" id="userInput" placeholder="Type the Korean word...">
+  <button id="checkBtn">Check</button>
+  <div id="feedback"></div>
+
+  <script src="words.js"></script>
+  <script>
+    let currentWordIndex = 0;
+    const wordEl = document.getElementById("word");
+    const audioBtn = document.getElementById("audioBtn");
+    const userInput = document.getElementById("userInput");
+    const checkBtn = document.getElementById("checkBtn");
+    const feedbackEl = document.getElementById("feedback");
+    const startBtn = document.getElementById("startBtn");
+
+    // Load first word
+    function loadWord() {
+      wordEl.textContent = words[currentWordIndex].english;
+      userInput.value = "";
+      feedbackEl.textContent = "";
+    }
+
+    // Play audio
+    audioBtn.addEventListener("click", () => {
+      const audio = new Audio(words[currentWordIndex].audio);
+      audio.play();
+    });
+
+    // Check answer
+    checkBtn.addEventListener("click", () => {
+      const userAnswer = userInput.value.trim();
+      const correctAnswer = words[currentWordIndex].korean;
+      
+      if (userAnswer === correctAnswer) {
+        feedbackEl.textContent = "✅ Correct!";
+        feedbackEl.style.color = "green";
+        setTimeout(() => {
+          currentWordIndex = (currentWordIndex + 1) % words.length;
+          loadWord();
+        }, 1000);
+      } else {
+        feedbackEl.textContent = "❌ Try again!";
+        feedbackEl.style.color = "red";
+      }
+    });
+
+    // Start session
+    startBtn.addEventListener("click", () => {
+      currentWordIndex = 0;
+      loadWord();
+    });
+  </script>
+</body>
+</html>
