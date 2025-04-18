@@ -6,11 +6,17 @@
     body { font-family: Arial; text-align: center; margin-top: 50px; }
     button { padding: 10px 20px; font-size: 16px; }
     #feedback { font-size: 24px; margin: 20px; }
+    #categorySelect {  padding: 8px;  font-size: 16px;  margin-bottom: 20px; }
   </style>
 </head>
 <body>
   <h1>Korean Dictation Practice</h1>
   <div id="word">Press START to begin</div>
+  <select id="categorySelect">
+  <option value="TOPIK I">TOPIK I</option>
+  <option value="TOPIK II">TOPIK II</option>
+  <option value="Verbs">Verbs</option>
+</select>
   <button id="startBtn">START</button>
   <button id="audioBtn">🔊 Play Audio</button>
   <input type="text" id="userInput" placeholder="Type the Korean word...">
@@ -27,12 +33,21 @@
     const feedbackEl = document.getElementById("feedback");
     const startBtn = document.getElementById("startBtn");
 
-    // Load first word
-    function loadWord() {
-      wordEl.textContent = words[currentWordIndex].english;
-      userInput.value = "";
-      feedbackEl.textContent = "";
-    }
+       let currentCategory = "TOPIK I"; // Default category
+
+function loadWord() {
+  const category = document.getElementById("categorySelect").value;
+  const words = wordCategories[category];
+  wordEl.textContent = words[currentWordIndex].english;
+  userInput.value = "";
+  feedbackEl.textContent = "";
+}
+
+// Update category when dropdown changes
+document.getElementById("categorySelect").addEventListener("change", () => {
+  currentWordIndex = 0; // Reset to first word of new category
+  loadWord();
+});
 
     // Play audio
     audioBtn.addEventListener("click", () => {
