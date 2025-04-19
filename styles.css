@@ -1,45 +1,44 @@
-:root {
-  --primary: #6E56CF;    /* Purple */
-  --secondary: #FF6B6B;  /* Coral */
-  --accent: #4CC9F0;     /* Sky Blue */
-  --dark: #2B2D42;       /* Navy */
-  --light: #F8F9FA;      /* Off-White */
-  --correct: #2ECC71;    /* Green */
-  --incorrect: #E74C3C;  /* Red */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-/* Category Cards - Colorful Backgrounds */
-.category-card:nth-child(1) { background: linear-gradient(135deg, var(--primary), #8A70E0); } /* Purple */
-.category-card:nth-child(2) { background: linear-gradient(135deg, var(--secondary), #FF8E8E); } /* Coral */
-.category-card:nth-child(3) { background: linear-gradient(135deg, var(--accent), #6BD5F5); } /* Blue */
-.category-card:nth-child(4) { background: linear-gradient(135deg, #FFD166, #FFE08A); } /* Yellow */
-
-/* Card Text Contrast */
-.category-card {
-  color: white;
-  border: none !important;
+.flashcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 40px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  max-width: 400px;
+  width: 100%;
 }
 
-.category-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
+h1 {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.category-card p {
-  color: rgba(255,255,255,0.9);
-  font-weight: 300;
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
 }
 
-/* Header Styling */
-header h1 {
-  color: var(--dark);
-  font-weight: 700;
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-header h2 {
-  color: var(--primary);
-  font-size: 1.1rem;
-  margin-top: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+#feedback {
+  font-size: 16px;
+  font-weight: bold;
 }
