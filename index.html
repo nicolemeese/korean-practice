@@ -1,102 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Keep existing head content -->
-    <style>
-        /* ADD THESE NEW STYLES */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 2rem 0;
-        }
-        
-        .category-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-            cursor: pointer;
-            border: 2px solid #e0e0e0;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-        
-        .category-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .category-card p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-        
-        /* Hide flashcards initially */
-        .flashcard-container {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Korean-English Flashcard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="app-container">
-        <header>
-  <h1>🇰🇷 Korean Dictation</h1>
-  <h2>Explore by category</h2>  <!-- Add this line -->
-        </header>
+  <div class="flashcard-container">
+    <h1 class="english-word">Not inferior to</h1>
+    
+    <button id="playAudio">Play Korean</button>
+    
+    <input type="text" id="koreanInput" placeholder="Type Korean word..." />
+    <button id="submitAnswer">Submit</button>
 
-        <!-- CATEGORY SELECTION GRID -->
-        <div class="categories-grid" id="categoriesGrid">
-            <div class="category-card" data-category="food">
-                <h3>Food & Dining</h3>
-                <p>Essential vocabulary for restaurants and Korean cuisine</p>
-            </div>
-            
-            <div class="category-card" data-category="travel">
-                <h3>Travel</h3>
-                <p>Words for transportation, directions, and tourism</p>
-            </div>
-            
-            <div class="category-card" data-category="topik1">
-                <h3>TOPIK I</h3>
-                <p>Beginner-level vocabulary for the TOPIK exam</p>
-            </div>
-            
-            <div class="category-card" data-category="topik2">
-                <h3>TOPIK II</h3>
-                <p>Advanced vocabulary for the TOPIK exam</p>
-            </div>
-        </div>
+    <p id="feedback"></p>
+  </div>
 
-        <!-- FLASHCARD CONTAINER (HIDDEN INITIALLY) -->
-        <div class="flashcard-container" id="flashcardContainer">
-            <!-- Your existing flashcard HTML goes here -->
-        </div>
-    </div>
-
-    <script>
-        // NEW JAVASCRIPT FOR CATEGORY SELECTION
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const category = card.dataset.category;
-                loadCategory(category);
-                
-                // Show flashcards, hide category grid
-                document.getElementById('categoriesGrid').style.display = 'none';
-                document.getElementById('flashcardContainer').style.display = 'block';
-            });
-        });
-        
-        // Modify your existing loadCategory function
-        function loadCategory(category) {
-            currentWords = wordCategories[category];
-            currentWordIndex = 0;
-            displayCurrentWord();
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
